@@ -7,10 +7,9 @@
         </h1>
 
         <div class="flex">
-          <TButton link :href="`/`" target="_blank" class="mr-2">
-            
+          <router-link link to="/" class="mr-2 pt-2.5 text-blue-500">
             Home
-          </TButton>
+          </router-link>
           <TButton
             v-if="model.id"
             link

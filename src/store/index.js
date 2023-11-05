@@ -30,50 +30,9 @@ const store = createStore({
   getters: {},
   actions: {
 
-    register({commit}, user) {
-      return axios.post('/register', user)
-        .then(({data}) => {
-          commit('setUser', data.user);
-          commit('setToken', data.token)
-          return data;
-        })
-    },
-    login({commit}, user) {
-      return axios.post('/login', user)
-        .then(({data}) => {
-          commit('setUser', data.user);
-          commit('setToken', data.token)
-          return data;
-        })
-    },
-    logout({commit}) {
-      return axios.post('/logout')
-        .then(response => {
-          commit('logout')
-          return response;
-        })
-    },
-    getUser({commit}) {
-      return axios.get('/user')
-      .then(res => {
-        console.log(res);
-        commit('setUser', res.data)
-      })
-    },
-    getDashboardData({commit}) {
-      commit('dashboardLoading', true)
-      return axios.get(`/dashboard`)
-      .then((res) => {
-        commit('dashboardLoading', false)
-        commit('setDashboardData', res.data)
-        return res;
-      })
-      .catch(error => {
-        commit('dashboardLoading', false)
-        return error;
-      })
-
-    },
+ 
+   
+ 
     getSurveys({ commit }, {url = null} = {}) {
       commit('setSurveysLoading', true)
       url = url || import.meta.env.VITE_API_BASE_URL+"/form";
@@ -86,7 +45,7 @@ const store = createStore({
     getSurvey({ commit }, id) {
       commit("setCurrentSurveyLoading", true);
       return axios
-        .get(`http://127.0.0.1:8000/api/form/${id}`)
+        .get(`${import.meta.env.VITE_API_BASE_URL}/form/${id}`)
         .then((res) => {
           commit("setCurrentSurvey", res.data);
           commit("setCurrentSurveyLoading", false);
